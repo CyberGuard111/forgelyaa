@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Для Ангелины 🤍</title>
+    <style>
+        @import url('https://googleapis.com');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #020208;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- 🌌 ТРЕХМЕРНЫЙ БЕЛЫЙ КОСМОС НА CSS --- */
+        .space {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            perspective: 600px;
+            overflow: hidden;
+        }
+
+        .stars-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 20%, #fff 1px, transparent 1px),
+                radial-gradient(circle at 70% 40%, #fff 1.5px, transparent 1.5px),
+                radial-gradient(circle at 15% 80%, #fff 1.2px, transparent 1.2px),
+                radial-gradient(circle at 85% 75%, #fff 2px, transparent 2px),
+                radial-gradient(circle at 50% 85%, #fff 1px, transparent 1px);
+            background-size: 400px 400px;
+            transform-style: preserve-3d;
+        }
+
+        .stars-fast { animation: flyForward 6s linear infinite; }
+        .stars-medium { animation: flyForward 12s linear infinite; background-position: 150px 200px; opacity: 0.7; }
+        .stars-slow { animation: flyForward 20s linear infinite; background-position: 270px 70px; opacity: 0.4; }
+
+        @keyframes flyForward {
+            0% { transform: translateZ(-600px); opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { transform: translateZ(500px); opacity: 0; }
+        }
+
+        .nebula {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(15, 10, 35, 0.4) 0%, rgba(2, 2, 8, 0.9) 80%);
+            z-index: 2;
+        }
+
+        /* --- 📝 ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ И АДАПТИВНОСТЬ --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .screen.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2rem, 5vw, 3.2rem); 
+            line-height: 1.3;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+
+        .question {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            padding: 16px 32px;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 8px;
+            width: 85%;
+            max-width: 280px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .btn-white { 
+            background: #ffffff; 
+            color: #020208; 
+        }
+        .btn-white:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline { 
+            background: rgba(255, 255, 255, 0.06); 
+            color: #e0e0e0; 
+            border: 1px solid rgba(255, 255, 255, 0.18); 
+        }
+        .btn-outline:hover { 
+            transform: scale(1.03); 
+        }
+
+        .huge-yes {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            color: #ffffff;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); text-shadow: 0 0 20px rgba(255,255,255,0.4); }
+            to { transform: scale(1.05); text-shadow: 0 0 45px rgba(255,255,255,0.8); }
+        }
+
+        /* --- 🤍 ДОЖДЬ ИЗ ЧИСТО БЕЛЫХ СЕРДЕЧЕК ДЛЯ ЭКРАНА ДА --- */
+        .hearts-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" viewBox="0 0 100 100"><text y="25" font-size="18" fill="white">🤍</text><text x="50" y="65" font-size="25" fill="white">🤍</text><text x="75" y="35" font-size="22" fill="white">✨</text><text x="25" y="85" font-size="20" fill="white">🤍</text><text x="80" y="85" font-size="24" fill="white">✨</text></svg>');
+            background-size: 260px 260px;
+            animation: rainMove 3.5s linear infinite;
+        }
+
+        @keyframes rainMove {
+            from { background-position: 0 0; }
+            to { background-position: 0 260px; }
+        }
+
+        @media (min-width: 480px) {
+            .btn-group {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .btn {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Космический фон -->
+    <div class="space">
+        <div class="stars-layer stars-slow"></div>
+        <div class="stars-layer stars-medium"></div>
+        <div class="stars-layer stars-fast"></div>
+        <div class="nebula"></div>
+    </div>
+
+    <div class="container">
+        <!-- ШАГ 1 -->
+        <div id="scr1" class="screen active">
+            <h1>Ангелина, у меня для тебя кое-что есть… 🤍</h1>
+            <button class="btn btn-white" onclick="startStory()">Открыть 💌</button>
+        </div>
+
+        <!-- ШАГ 2 -->
+        <div id="scr2" class="screen">
+            <h1>Знаешь, есть один человек, который стал мне очень нравиться… 🤍</h1>
+        </div>
+
+        <!-- ШАГ 3 -->
+        <div id="scr3" class="screen">
+            <h1>И этот человек сейчас читает это сообщение 🤭</h1>
+        </div>
+
+        <!-- ШАГ 4 (ГЛАВНЫЙ) -->
+        <div id="scr4" class="screen">
+            <h2 class="question">Ангелина, будешь моей девушкой? 🤍</h2>
+            <div class="btn-group">
+                <button class="btn btn-white" onclick="showFinal('yes')">🤍 ДААААА!</button>
+                <button class="btn btn-outline" onclick="showFinal('think')">🤍 Мне нужно подумать</button>
+            </div>
+        </div>
+
+                <!-- ФИНАЛ: ДА -->
+        <div id="scr-yes" class="screen">
+            <div class="hearts-rain"></div>
+            <h1 class="huge-yes">АААААААААААА 😭🤍✨</h1>
+            <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); margin-top: 15px; opacity: 0.6; font-weight: 400; letter-spacing: 0.5px; font-family: 'Montserrat', sans-serif;">
+                Введи в тг "3365"
+            </p>
+        </div>
+
+
+        <!-- ФИНАЛ: ПОДУМАТЬ -->
+        <div id="scr-think" class="screen">
+            <h1>Не торопись, я хочу, чтобы ты ответила так, как действительно чувствуешь 🤍</h1>
+        </div>
+    </div>
+
+    <script>
+        function startStory() {
+            document.getElementById("scr1").classList.remove("active");
+            document.getElementById("scr2").classList.add("active");
+
+            setTimeout(function() {
+                document.getElementById("scr2").classList.remove("active");
+                document.getElementById("scr3").classList.add("active");
+            }, 4500);
+
+            setTimeout(function() {
+                document.getElementById("scr3").classList.remove("active");
+                document.getElementById("scr4").classList.add("active");
+            }, 9000);
+        }
+
+        function showFinal(choice) {
+            document.getElementById("scr4").classList.remove("active");
+
+            if (choice === "yes") {
+                document.getElementById("scr-yes").classList.add("active");
+            } else {
+                document.getElementById("scr-think").classList.add("active");
+            }
+        }
+    </script>
+
+</body>
+</html>
